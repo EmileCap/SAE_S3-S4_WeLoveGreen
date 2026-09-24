@@ -1,2 +1,3 @@
-# SAE_S3-S4_WeLoveGreen
-SAE
+# We Love Green 
+Site de gestion de festivals
+-----
