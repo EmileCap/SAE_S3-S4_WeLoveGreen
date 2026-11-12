@@ -3,6 +3,7 @@ import ClientDashboardView from '../views/ClientDashboardView.vue'
 import DashboardView from '../views/DashboardView.vue'
 import HomeView from '../views/HomeView.vue'
 import LoginView from '../views/LoginView.vue'
+import ProgrammeView from '../views/ProgrammeView.vue'
 import { getSession } from '../services/sessionService'
 
 const router = createRouter({
@@ -17,6 +18,11 @@ const router = createRouter({
       path: '/login',
       name: 'login',
       component: LoginView,
+    },
+    {
+      path: '/programme',
+      name: 'programme',
+      component: ProgrammeView,
     },
     {
       path: '/client/programme',
