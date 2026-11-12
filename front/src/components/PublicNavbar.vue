@@ -38,7 +38,7 @@ function openMyProgramme() {
       <RouterLink
         class="nav-link"
         :class="{ active: props.activePage === 'Programme' }"
-        to="/programme"
+        :to="{ name: 'programme' }"
       >
         Programme
       </RouterLink>

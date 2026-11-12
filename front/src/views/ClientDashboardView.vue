@@ -2,10 +2,12 @@
 import { computed, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import PublicNavbar from '../components/PublicNavbar.vue'
+import { getProgramme } from '../services/programmeService'
 import { clearSession, getSession } from '../services/sessionService'
 
 const router = useRouter()
 const user = getSession()
+const events = getProgramme()
 const activePage = ref('Mon programme')
 const message = computed(() => `${activePage.value} - Client FONCTIONNE`)
 
@@ -25,8 +27,10 @@ function signOut() {
       <p class="welcome">Bonjour : {{ user?.login }}</p>
       <div class="saved-programme">
         <p>VOTRE PROGRAMME</p>
-        <span>Votre espace personnel est prêt.</span>
-        <RouterLink to="/programme">Explorer la programmation <span aria-hidden="true">↗</span></RouterLink>
+        <span>{{ events.length }} événements à découvrir</span>
+        <RouterLink :to="{ name: 'programme' }">
+          Explorer la programmation <span aria-hidden="true">↗</span>
+        </RouterLink>
       </div>
     </section>
   </main>

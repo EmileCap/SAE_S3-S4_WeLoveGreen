@@ -9,7 +9,9 @@ import PublicNavbar from '../components/PublicNavbar.vue'
     <section class="home-hero">
       <p class="eyebrow">10 — 12 JUILLET 2026 · PARIS</p>
       <h1>WE LOVE<br /><span>GREEN.</span></h1>
-      <RouterLink class="programme-link" to="/programme">Découvrir le programme <span>↗</span></RouterLink>
+      <RouterLink class="programme-link" :to="{ name: 'programme' }">
+        Découvrir le programme <span>↗</span>
+      </RouterLink>
     </section>
   </main>
 </template>
