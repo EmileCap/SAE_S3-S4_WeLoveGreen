@@ -1,0 +1,122 @@
+{
+  "typesUtilisateurs": [
+    { "Id_Type_Utilisateur": 1, "libelle_Type_Utilisateur": "organisateur" },
+    { "Id_Type_Utilisateur": 2, "libelle_Type_Utilisateur": "prestataire" },
+    { "Id_Type_Utilisateur": 3, "libelle_Type_Utilisateur": "visiteur" }
+  ],
+
+  "Utilisateur": [
+    {
+      "Id_Type_Utilisateur": 1,
+      "Id_Utilisateur": 1,
+      "Login_Utilisateur": "big_brother",
+      "Passwoard_Utilisateur": "emiledujt",
+      "Email_Utilisateur": "iseeyou@gmail.com"
+    },
+    {
+      "Id_Type_Utilisateur": 2,
+      "Id_Utilisateur": 2,
+      "Login_Utilisateur": "Demondice",
+      "Passwoard_Utilisateur": "alternative",
+      "Email_Utilisateur": "demondiceKaren@gmail.com"
+    },
+    {
+      "Id_Type_Utilisateur": 3,
+      "Id_Utilisateur": 3,
+      "Login_Utilisateur": "adam",
+      "Passwoard_Utilisateur": "S@cisse43",
+      "Email_Utilisateur": "bajiic@gmail.com"
+    },
+    {
+      "Id_Type_Utilisateur": 2,
+      "Id_Utilisateur": 4,
+      "Login_Utilisateur": "musclor",
+      "Passwoard_Utilisateur": "ecfbbb2",
+      "Email_Utilisateur": "lasaledesport@gmail.com"
+    },
+    {
+      "Id_Type_Utilisateur": 2,
+      "Id_Utilisateur": 5,
+      "Login_Utilisateur": "emile",
+      "Passwoard_Utilisateur": "money1!",
+      "Email_Utilisateur": "crococo@gmail.com"
+    }
+  ],
+
+  "Type_Prestataire": [
+    { "Id_type_prestataire": 1,"libelle_Type_Prestataire": "musiciens", "Description_Type_Prestataire": "chateur_groupe_de_musique" },
+    { "Id_type_prestataire": 2, "libelle_Type_Prestataire": "restorateur", "Description_Type_Prestataire": "vendeur de nouriture cuisinier" },
+    { "Id_type_prestataire": 3, "libelle_Type_Prestataire": "artiste", "Description_Type_Prestataire": "paintre scuplteur soudeur" },
+    { "Id_type_prestataire": 4, "libelle_Type_Prestataire": "createur_de_contenus", "Description_Type_Prestataire": "youtuber cast realisateur" },
+    { "Id_type_prestataire": 5, "libelle_Type_Prestataire": "Merchandising", "Description_Type_Prestataire": "Vente de produits derives et de souvenirs" },
+    { "Id_type_prestataire": 6, "libelle_Type_Prestataire": "Accueil", "Description_Type_Prestataire": "Accueil du public billetterie et securite" }
+  ],
+
+  "Prestataire": [
+    { "Id_Prestataire": 1, "Nom_Prestataire": "karen", "Id_type_prestataire": 1 },
+    { "Id_Prestataire": 2, "Nom_Prestataire": "Tibo huinshape", "Id_type_prestataire": 4 },
+    { "Id_Prestataire": 3, "Nom_Prestataire": "crocHouse", "Id_type_prestataire": 2 }
+  ],
+
+  "prestatairesTypesUtilisateurs": [
+    { "Id_Prestataire": 1, "Id_Type_Utilisateur": 2 },
+    { "Id_Prestataire": 2, "Id_Type_Utilisateur": 2 },
+    { "Id_Prestataire": 3, "Id_Type_Utilisateur": 2 }
+  ],
+
+  "Emplacement": [
+    { "Id_Emplacement": 1, "Nom_Emplacement": "ygdrasil", "Zone_Emplacement": "centre", "Surface_Emplacement": 500, "Id_Prestataire": 1 },
+    { "Id_Emplacement": 2, "Nom_Emplacement": "allée du chenne", "Zone_Emplacement": "est", "Surface_Emplacement": 150, "Id_Prestataire": 1 },
+    { "Id_Emplacement": 3, "Nom_Emplacement": "Galerie verte", "Zone_Emplacement": "Ouest", "Surface_Emplacement": 80, "Id_Prestataire": 3 },
+    { "Id_Emplacement": 4, "Nom_Emplacement": "forret autonale", "Zone_Emplacement": "Sud", "Surface_Emplacement": 100, "Id_Prestataire": null }
+  ],
+
+  "typesEvenements": [
+    { "Id_type_evenement": 1, "libbele_type_evenement": "concert" },
+    { "Id_type_evenement": 2, "libbele_type_evenement": "talk" },
+    { "Id_type_evenement": 3, "libbele_type_evenement": "comédie" }
+  ],
+
+  "evenements": [
+    { "Id_evenement": 1, "libelle_evenement": "kakigury-galaxy-astronault", "debut_evenement": "2026-07-10T18:00:00", "fin_evenement": "2026-07-10T20:00:00", "Id_Emplacement": 1, "Id_type_evenement": 1, "image_evenement": "/images/evenements/astronault.jpg", "capacite_evenement": 1900 },
+    { "Id_evenement": 2, "libelle_evenement": "Talk : cuisiner la forêt", "debut_evenement": "2026-07-10T18:30:00", "fin_evenement": "2026-07-10T19:30:00", "Id_Emplacement": 2, "Id_type_evenement": 2, "image_evenement": "/images/evenements/cuisiner-foret.jpg", "capacite_evenement": 40 },
+    { "Id_evenement": 3, "libelle_evenement": "Les blagues de l'arbre-monde", "debut_evenement": "2026-07-10T19:00:00", "fin_evenement": "2026-07-10T20:30:00", "Id_Emplacement": 3, "Id_type_evenement": 3, "image_evenement": "/images/evenements/arbre-monde.jpg", "capacite_evenement": 60 },
+    { "Id_evenement": 4, "libelle_evenement": "Stand-up sous les étoiles", "debut_evenement": "2026-07-11T20:00:00", "fin_evenement": "2026-07-11T21:30:00", "Id_Emplacement": 3, "Id_type_evenement": 3, "image_evenement": "/images/evenements/standup.jpg", "capacite_evenement": 5 },
+    { "Id_evenement": 5, "libelle_evenement": "Nuit électro Ygdrasil", "debut_evenement": "2026-07-11T20:30:00", "fin_evenement": "2026-07-11T22:30:00", "Id_Emplacement": 1, "Id_type_evenement": 1, "image_evenement": "/images/evenements/electro.jpg", "capacite_evenement": 1900 },
+    { "Id_evenement": 6, "libelle_evenement": "Talk : vivre de son art", "debut_evenement": "2026-07-11T14:00:00", "fin_evenement": "2026-07-11T15:30:00", "Id_Emplacement": 3, "Id_type_evenement": 2, "image_evenement": "/images/evenements/vivre-art.jpg", "capacite_evenement": 60 },
+    { "Id_evenement": 7, "libelle_evenement": "Concert acoustique sous le chêne", "debut_evenement": "2026-07-11T15:00:00", "fin_evenement": "2026-07-11T17:00:00", "Id_Emplacement": 2, "Id_type_evenement": 1, "image_evenement": null, "capacite_evenement": 100 },
+    { "Id_evenement": 8, "libelle_evenement": "Concert de clôture", "debut_evenement": "2026-07-12T17:00:00", "fin_evenement": "2026-07-12T19:00:00", "Id_Emplacement": 1, "Id_type_evenement": 1, "image_evenement": "/images/evenements/cloture.jpg", "capacite_evenement": 1900 },
+    { "Id_evenement": 9, "libelle_evenement": "Talk : créateurs de contenus, mode d'emploi", "debut_evenement": "2026-07-12T17:30:00", "fin_evenement": "2026-07-12T18:30:00", "Id_Emplacement": 2, "Id_type_evenement": 2, "image_evenement": "/images/evenements/createurs.jpg", "capacite_evenement": 50 },
+    { "Id_evenement": 10, "libelle_evenement": "Impro finale", "debut_evenement": "2026-07-12T18:00:00", "fin_evenement": "2026-07-12T19:30:00", "Id_Emplacement": 3, "Id_type_evenement": 3, "image_evenement": "/images/evenements/impro.jpg", "capacite_evenement": 60 }
+  ],
+
+  "reservations": [
+    { "Id_reservation": 1, "heure_reservation": "2026-06-20T10:15:00", "Id_evenement": 4, "Id_Type_Utilisateur": 3 },
+    { "Id_reservation": 2, "heure_reservation": "2026-06-20T11:02:00", "Id_evenement": 4, "Id_Type_Utilisateur": 3 },
+    { "Id_reservation": 3, "heure_reservation": "2026-06-21T14:40:00", "Id_evenement": 4, "Id_Type_Utilisateur": 3 },
+    { "Id_reservation": 4, "heure_reservation": "2026-06-22T09:30:00", "Id_evenement": 4, "Id_Type_Utilisateur": 3 },
+    { "Id_reservation": 5, "heure_reservation": "2026-06-22T18:30:00", "Id_evenement": 1, "Id_Type_Utilisateur": 3 },
+    { "Id_reservation": 6, "heure_reservation": "2026-06-23T11:05:00", "Id_evenement": 1, "Id_Type_Utilisateur": 3 },
+    { "Id_reservation": 7, "heure_reservation": "2026-06-23T12:20:00", "Id_evenement": 2, "Id_Type_Utilisateur": 3 },
+    { "Id_reservation": 8, "heure_reservation": "2026-06-24T16:45:00", "Id_evenement": 10, "Id_Type_Utilisateur": 3 }
+  ],
+
+  "billets": [
+    { "Id_Billet": 1, "Date_billet": "2026-07-10", "Id_Type_Utilisateur": 3 },
+    { "Id_Billet": 2, "Date_billet": "2026-07-11", "Id_Type_Utilisateur": 3 },
+    { "Id_Billet": 3, "Date_billet": "2026-07-12", "Id_Type_Utilisateur": 3 }
+  ],
+
+  "oeuvres": [
+    { "Id_oeuvre": 1, "libelle_oeuvre": "Néon Mélancolie", "auteur_oeuvre": "Léa Fontaine", "Id_Emplacement": 3 },
+    { "Id_oeuvre": 2, "libelle_oeuvre": "Fresque des Quatre Vents", "auteur_oeuvre": "Atelier Soudure Vive", "Id_Emplacement": 3 },
+    { "Id_oeuvre": 3, "libelle_oeuvre": "Glitch Garden", "auteur_oeuvre": "Noé Garnier", "Id_Emplacement": 3 }
+  ],
+
+  "votes": [
+    { "Id_vote": 1, "note_vote": 5, "commentaire_vote": "Magnifique, les néons sont hypnotisants.", "date_vote": "2026-07-10T21:00:00", "Id_Utilisateur": 3, "Id_oeuvre": 1 },
+    { "Id_vote": 2, "note_vote": 4, "commentaire_vote": "Très belle ambiance.", "date_vote": "2026-07-10T21:10:00", "Id_Utilisateur": 2, "Id_oeuvre": 1 },
+    { "Id_vote": 3, "note_vote": 5, "commentaire_vote": "Une fresque pleine de vie.", "date_vote": "2026-07-11T12:00:00", "Id_Utilisateur": 3, "Id_oeuvre": 2 },
+    { "Id_vote": 4, "note_vote": 3, "commentaire_vote": "Original mais un peu abstrait.", "date_vote": "2026-07-11T12:30:00", "Id_Utilisateur": 5, "Id_oeuvre": 3 }
+  ]
+}
