@@ -20,15 +20,15 @@ function signIn() {
 
   isSubmitting.value = true
 
-  const user = authenticate(login.value, password.value)
+  const authentication = authenticate(login.value, password.value)
 
-  if (!user) {
+  if (!authentication) {
     errorMessage.value = 'Identifiant ou mot de passe incorrect.'
     isSubmitting.value = false
     return
   }
 
-  saveSession(user)
+  const user = saveSession(authentication)
 
   isSubmitting.value = false
 
