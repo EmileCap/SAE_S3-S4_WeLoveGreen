@@ -37,9 +37,72 @@
     {
       "Id_Type_Utilisateur": 2,
       "Id_Utilisateur": 5,
-      "Login_Utilisateur": "emile",
-      "Passwoard_Utilisateur": "money1!",
-      "Email_Utilisateur": "crococo@gmail.com"
+      "Login_Utilisateur": "crochouse",
+      "Passwoard_Utilisateur": "crochouse",
+      "Email_Utilisateur": "crochouse@example.com"
+    },
+    {
+      "Id_Type_Utilisateur": 1,
+      "Id_Utilisateur": 6,
+      "Login_Utilisateur": "admin1",
+      "Passwoard_Utilisateur": "admin",
+      "Email_Utilisateur": "admin1@example.com"
+    },
+    {
+      "Id_Type_Utilisateur": 1,
+      "Id_Utilisateur": 7,
+      "Login_Utilisateur": "admin2",
+      "Passwoard_Utilisateur": "admin",
+      "Email_Utilisateur": "admin2@example.com"
+    },
+    {
+      "Id_Type_Utilisateur": 1,
+      "Id_Utilisateur": 8,
+      "Login_Utilisateur": "admin3",
+      "Passwoard_Utilisateur": "admin",
+      "Email_Utilisateur": "admin3@example.com"
+    },
+    {
+      "Id_Type_Utilisateur": 2,
+      "Id_Utilisateur": 10,
+      "Login_Utilisateur": "prestataire2",
+      "Passwoard_Utilisateur": "prestataire",
+      "Email_Utilisateur": "prestataire2@example.com"
+    },
+    {
+      "Id_Type_Utilisateur": 2,
+      "Id_Utilisateur": 15,
+      "Login_Utilisateur": "crous",
+      "Passwoard_Utilisateur": "crous",
+      "Email_Utilisateur": "crous@example.com"
+    },
+    {
+      "Id_Type_Utilisateur": 2,
+      "Id_Utilisateur": 11,
+      "Login_Utilisateur": "prestataire3",
+      "Passwoard_Utilisateur": "prestataire",
+      "Email_Utilisateur": "prestataire3@example.com"
+    },
+    {
+      "Id_Type_Utilisateur": 3,
+      "Id_Utilisateur": 12,
+      "Login_Utilisateur": "client1",
+      "Passwoard_Utilisateur": "client",
+      "Email_Utilisateur": "client1@example.com"
+    },
+    {
+      "Id_Type_Utilisateur": 3,
+      "Id_Utilisateur": 13,
+      "Login_Utilisateur": "client2",
+      "Passwoard_Utilisateur": "client",
+      "Email_Utilisateur": "client2@example.com"
+    },
+    {
+      "Id_Type_Utilisateur": 3,
+      "Id_Utilisateur": 14,
+      "Login_Utilisateur": "client3",
+      "Passwoard_Utilisateur": "client",
+      "Email_Utilisateur": "client3@example.com"
     }
   ],
 
@@ -55,13 +118,37 @@
   "Prestataire": [
     { "Id_Prestataire": 1, "Nom_Prestataire": "karen", "Id_type_prestataire": 1 },
     { "Id_Prestataire": 2, "Nom_Prestataire": "Tibo huinshape", "Id_type_prestataire": 4 },
-    { "Id_Prestataire": 3, "Nom_Prestataire": "crocHouse", "Id_type_prestataire": 2 }
+    { "Id_Prestataire": 3, "Nom_Prestataire": "CrocHouse", "Id_type_prestataire": 2 },
+    { "Id_Prestataire": 4, "Nom_Prestataire": "Crous Belfort", "Id_type_prestataire": 2 }
   ],
 
   "prestatairesTypesUtilisateurs": [
     { "Id_Prestataire": 1, "Id_Type_Utilisateur": 2 },
     { "Id_Prestataire": 2, "Id_Type_Utilisateur": 2 },
-    { "Id_Prestataire": 3, "Id_Type_Utilisateur": 2 }
+    { "Id_Prestataire": 3, "Id_Type_Utilisateur": 2 },
+    { "Id_Prestataire": 4, "Id_Type_Utilisateur": 2 }
+  ],
+
+  "prestatairesUtilisateurs": [
+    { "Id_Utilisateur": 2, "Id_Prestataire": 1 },
+    { "Id_Utilisateur": 4, "Id_Prestataire": 2 },
+    { "Id_Utilisateur": 5, "Id_Prestataire": 3 },
+    { "Id_Utilisateur": 10, "Id_Prestataire": 1 },
+    { "Id_Utilisateur": 11, "Id_Prestataire": 2 },
+    { "Id_Utilisateur": 15, "Id_Prestataire": 4 }
+  ],
+
+  "plats": [
+    { "id": 1, "prestataireId": 3, "categorie": "Plats", "nom": "Burger végétal", "description": "Galette de légumes, salade et sauce maison", "prix": 12.5, "disponible": true },
+    { "id": 2, "prestataireId": 3, "categorie": "Plats", "nom": "Assiette du marché", "description": "Légumes de saison et céréales locales", "prix": 10, "disponible": true },
+    { "id": 3, "prestataireId": 3, "categorie": "Desserts", "nom": "Tarte aux pommes", "description": "Pommes locales, pâte pur beurre", "prix": 5.5, "disponible": true },
+    { "id": 4, "prestataireId": 3, "categorie": "Plats", "nom": "Wrap croquant", "description": "Légumes frais, houmous et galette aux céréales", "prix": 9.5, "disponible": true },
+    { "id": 5, "prestataireId": 3, "categorie": "Boissons", "nom": "Citronnade maison", "description": "Citron pressé et menthe fraîche", "prix": 3.5, "disponible": true },
+    { "id": 6, "prestataireId": 4, "categorie": "Plats du jour", "nom": "Menu étudiant", "description": "Plat du jour, accompagnement et fruit", "prix": 3.3, "disponible": true },
+    { "id": 7, "prestataireId": 4, "categorie": "Plats végétariens", "nom": "Bowl végétarien", "description": "Riz, légumes de saison et sauce au yaourt", "prix": 3.3, "disponible": true },
+    { "id": 8, "prestataireId": 4, "categorie": "Plats", "nom": "Pâtes à la sauce tomate", "description": "Pâtes et sauce tomate cuisinée", "prix": 2.8, "disponible": true },
+    { "id": 9, "prestataireId": 4, "categorie": "Desserts", "nom": "Yaourt fermier", "description": "Yaourt nature issu de producteurs locaux", "prix": 1.2, "disponible": true },
+    { "id": 10, "prestataireId": 4, "categorie": "Boissons", "nom": "Eau pétillante", "description": "Bouteille d’eau pétillante", "prix": 1, "disponible": true }
   ],
 
   "Emplacement": [

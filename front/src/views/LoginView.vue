@@ -32,12 +32,17 @@ function signIn() {
 
   isSubmitting.value = false
 
-  if (router.currentRoute.value.query.redirect === 'mon-programme' && user.role === 'visiteur') {
+  if (user.role === 'visiteur') {
+    if (router.currentRoute.value.query.redirect === 'commandes') {
+      router.push({ name: 'client-meals' })
+      return
+    }
+
     router.push({ name: 'client-dashboard' })
     return
   }
 
-  router.push({ name: user.role === 'visiteur' ? 'client-dashboard' : 'dashboard' })
+  router.push({ name: 'dashboard' })
 }
 </script>
 

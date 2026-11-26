@@ -31,6 +31,9 @@ function signOut() {
         <RouterLink :to="{ name: 'programme' }">
           Explorer la programmation <span aria-hidden="true">↗</span>
         </RouterLink>
+        <RouterLink class="meals-link" :to="{ name: 'client-meals' }">
+          Réserver un plat et suivre ma file <span aria-hidden="true">↗</span>
+        </RouterLink>
       </div>
     </section>
   </main>
@@ -127,5 +130,10 @@ function signOut() {
   font-family: 'PP Fraktion Mono', 'Courier New', monospace;
   font-size: 11px;
   text-decoration: none;
+}
+
+.saved-programme .meals-link {
+  border-top: 0;
+  padding-top: 0;
 }
 </style>
