@@ -2,6 +2,7 @@
 import { computed, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import PublicNavbar from '../components/PublicNavbar.vue'
+import { isRestaurantProvider } from '../services/mealOrderService'
 import { clearSession, getSession } from '../services/sessionService'
 
 const router = useRouter()
@@ -9,6 +10,7 @@ const user = getSession()
 
 if (!user) router.replace({ name: 'login' })
 
+const hasRestaurantActivity = computed(() => isRestaurantProvider(user))
 const roleLabel = computed(() => {
   if (user?.role === 'organisateur') return 'Admin'
   if (user?.role === 'visiteur') return 'Client'
@@ -25,7 +27,11 @@ const navItems = computed(() => {
   }
 
   if (user?.role === 'prestataire') {
-    return [{ label: 'Ma programmation' }, { label: 'Statistiques' }]
+    return [
+      ...(hasRestaurantActivity.value ? [{ label: 'Commandes', to: { name: 'provider-meals' } }] : []),
+      { label: 'Ma programmation' },
+      { label: 'Statistiques' },
+    ]
   }
 
   if (user?.role === 'organisateur') {
@@ -35,7 +41,9 @@ const navItems = computed(() => {
   return []
 })
 const activePage = ref(navItems.value[0]?.label ?? '')
-const pageMessage = computed(() => `${activePage.value} - ${roleLabel.value} FONCTIONNE`)
+const pageMessage = computed(() =>
+  activePage.value === 'Commandes' ? 'Suivez vos commandes' : `${activePage.value} - ${roleLabel.value} FONCTIONNE`,
+)
 
 function signOut() {
   clearSession()
@@ -70,6 +78,9 @@ function signOut() {
     <section class="content" aria-live="polite">
       <p class="eyebrow">ESPACE PERSONNEL · {{ roleLabel }}</p>
       <h1>{{ pageMessage }}</h1>
+      <RouterLink v-if="activePage === 'Commandes'" class="orders-link" :to="{ name: 'provider-meals' }">
+        Ouvrir la file des commandes <span aria-hidden="true">↗</span>
+      </RouterLink>
     </section>
   </main>
 </template>
@@ -203,6 +214,18 @@ function signOut() {
   font-family: 'PP Fraktion Mono', 'Courier New', monospace;
   font-size: 11px;
   letter-spacing: 0.12em;
+}
+
+.orders-link {
+  display: inline-flex;
+  gap: 18px;
+  margin-top: 28px;
+  border: 1px solid var(--accent);
+  padding: 14px 18px;
+  color: var(--accent);
+  font-family: 'PP Fraktion Mono', 'Courier New', monospace;
+  font-size: 11px;
+  text-decoration: none;
 }
 
 .content h1 {

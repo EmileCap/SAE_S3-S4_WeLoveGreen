@@ -32,22 +32,27 @@ function signIn() {
 
   isSubmitting.value = false
 
-  if (user.role === 'visiteur' && router.currentRoute.value.query.redirectTo) {
-    router.push(router.currentRoute.value.query.redirectTo)
-    return
-  }
+  if (user.role === 'visiteur') {
+    if (router.currentRoute.value.query.redirectTo) {
+      router.push(router.currentRoute.value.query.redirectTo)
+      return
+    }
 
-  if (router.currentRoute.value.query.redirect === 'mon-programme' && user.role === 'visiteur') {
+    if (router.currentRoute.value.query.redirect === 'commandes') {
+      router.push({ name: 'client-meals' })
+      return
+    }
+
+    if (router.currentRoute.value.query.redirect === 'achat-pass') {
+      router.push({ name: 'pass-purchase' })
+      return
+    }
+
     router.push({ name: 'client-dashboard' })
     return
   }
 
-  if (router.currentRoute.value.query.redirect === 'achat-pass' && user.role === 'visiteur') {
-    router.push({ name: 'pass-purchase' })
-    return
-  }
-
-  router.push({ name: user.role === 'visiteur' ? 'client-dashboard' : 'dashboard' })
+  router.push({ name: 'dashboard' })
 }
 </script>
 

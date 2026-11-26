@@ -3,13 +3,16 @@ import ClientDashboardView from '../views/ClientDashboardView.vue'
 import DashboardView from '../views/DashboardView.vue'
 import HomeView from '../views/HomeView.vue'
 import LoginView from '../views/LoginView.vue'
-import ProgrammeView from '../views/ProgrammeView.vue'
-import PassPurchaseView from '../views/PassPurchaseView.vue'
-import PassPaymentView from '../views/PassPaymentView.vue'
-import PurchaseSuccessView from '../views/PurchaseSuccessView.vue'
+import MealOrderClientView from '../views/MealOrderClientView.vue'
+import MealOrdersView from '../views/MealOrdersView.vue'
 import MyReservationsView from '../views/MyReservationsView.vue'
-import { getSession } from '../services/sessionService'
+import PassPaymentView from '../views/PassPaymentView.vue'
+import PassPurchaseView from '../views/PassPurchaseView.vue'
+import ProgrammeView from '../views/ProgrammeView.vue'
+import PurchaseSuccessView from '../views/PurchaseSuccessView.vue'
+import { isRestaurantProvider } from '../services/mealOrderService'
 import { getPassPurchase } from '../services/passService'
+import { getSession } from '../services/sessionService'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -68,6 +71,23 @@ const router = createRouter({
       name: 'my-reservations',
       component: MyReservationsView,
       beforeEnter: () => (getSession()?.role === 'visiteur' ? true : { name: 'login' }),
+    },
+    {
+      path: '/client/commandes',
+      name: 'client-meals',
+      component: MealOrderClientView,
+      beforeEnter: () =>
+        getSession()?.role === 'visiteur' ? true : { name: 'login', query: { redirect: 'commandes' } },
+    },
+    {
+      path: '/prestataire/commandes',
+      name: 'provider-meals',
+      component: MealOrdersView,
+      beforeEnter: () => {
+        const user = getSession()
+        if (!user) return { name: 'login' }
+        return user.role === 'prestataire' && isRestaurantProvider(user) ? true : { name: 'dashboard' }
+      },
     },
     {
       path: '/dashboard',
