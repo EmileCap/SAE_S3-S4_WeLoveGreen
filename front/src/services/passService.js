@@ -1,7 +1,20 @@
 import database from '../../data/db.json'
 import { getSession } from './sessionService'
 
-let purchases = [...(database.achatsPass ?? [])]
+const STORAGE_KEY = 'welovegreen-pass-purchases'
+
+function readPurchases() {
+  try {
+    const savedPurchases = JSON.parse(localStorage.getItem(STORAGE_KEY) ?? 'null')
+    return Array.isArray(savedPurchases) ? savedPurchases : [...(database.achatsPass ?? [])]
+  } catch {
+    return [...(database.achatsPass ?? [])]
+  }
+}
+
+function savePurchases(purchases) {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(purchases))
+}
 
 export const FESTIVAL_DAYS = [
   { date: '2026-07-10', label: 'Vendredi 10 juillet' },
@@ -15,7 +28,7 @@ export function getPassTypes() {
 
 export function getUserPasses(userId = getSession()?.id) {
   if (!userId) return []
-  return purchases
+  return readPurchases()
     .filter((purchase) => purchase.userId === userId)
     .sort((first, second) => new Date(second.purchasedAt) - new Date(first.purchasedAt))
 }
@@ -47,6 +60,6 @@ export function createPassPurchase({ passId, dates }) {
     status: 'validé',
   }
 
-  purchases.push(purchase)
+  savePurchases([...readPurchases(), purchase])
   return purchase
 }
