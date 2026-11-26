@@ -1,0 +1,122 @@
+/* Boutons : un style sobre, inspiré de Bootstrap (sans la bibliothèque).
+   Tout bouton ou lien d'action est un vrai bouton visible : fond blanc, contour gris bien marqué, texte sombre.
+   Le plein (fond de couleur) est réservé à l'action principale d'une page : on ajoute alors « btn-solid ».
+   Seul le rouge garde une couleur (btn-danger) : il signale une action qui supprime, refuse ou retire.
+
+   Usage :  class="btn"                       (gris sobre : le bouton de base, à utiliser partout)
+            class="btn btn-success btn-solid" (l'action principale de la page : fond plein ; aussi btn-primary, btn-warning, btn-dark)
+            class="btn btn-outline-danger"    (action qui supprime ou refuse ; btn-danger = même chose, fond un peu teinté)
+   Options : btn-sm = petit bouton | active = bouton « enfoncé » (filtre actif, rôle courant…)
+   Marche sur <button> comme sur <a> / <RouterLink>. Un bouton désactivé (disabled) est grisé et ne réagit plus. */
+
+.btn
+{
+  --c: #343a40;            /* texte et contour au survol */
+  --border: #8c939a;       /* contour gris, bien visible */
+  --bg: #fff;
+  --bg-hover: #f1f3f5;
+  --bg-active: #e4e7ea;
+  --solid: #495057;        /* fond de la version « btn-solid » */
+  --on-solid: #fff;
+  --focus: rgba(73, 80, 87, 0.25);
+
+  display: inline-block;
+  padding: 0.3rem 0.7rem;
+  border: 1px solid var(--border);
+  border-radius: 0.375rem;
+  background: var(--bg);
+  color: var(--c);
+  font-family: inherit;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.4;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+  cursor: pointer;
+  user-select: none;
+  transition: color 0.15s, background-color 0.15s, border-color 0.15s, box-shadow 0.15s, filter 0.15s;
+}
+
+.btn:hover
+{
+  border-color: var(--c);
+  background: var(--bg-hover);
+}
+
+/* Enfoncé (clic) ou actif : fond un peu plus soutenu, contour de la couleur du bouton */
+.btn:active,
+.btn.active
+{
+  border-color: var(--c);
+  background: var(--bg-active);
+}
+
+.btn:focus-visible
+{
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem var(--focus);
+}
+
+.btn:disabled,
+.btn.disabled
+{
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+.btn-sm
+{
+  padding: 0.2rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.8125rem;
+}
+
+.rounded-pill { border-radius: 50rem; }
+
+/* ---- Variantes : même aspect gris ; elles ne changent que la couleur du fond plein (btn-solid), sauf le rouge ---- */
+
+.btn-primary,   .btn-outline-primary   { --solid: #0d6efd; --focus: rgba(13, 110, 253, 0.25); }
+.btn-secondary, .btn-outline-secondary { --solid: #6c757d; }
+.btn-success,   .btn-outline-success   { --solid: #198754; --focus: rgba(25, 135, 84, 0.25); }
+.btn-dark,      .btn-outline-dark      { --solid: #212529; }
+.btn-warning { --solid: #ffc107; --on-solid: #000; --focus: rgba(255, 193, 7, 0.35); }
+
+/* Le rouge : supprimer, refuser, retirer, se déconnecter */
+.btn-danger,
+.btn-outline-danger
+{
+  --c: #b02a37; --border: #d9808a; --bg: #fff; --bg-hover: #fce8ea; --bg-active: #f8d7da;
+  --solid: #dc3545; --focus: rgba(220, 53, 69, 0.25);
+}
+.btn-danger { --bg: #fff6f7; }
+
+/* ---- Action principale : fond plein, un seul par page ---- */
+
+.btn-solid,
+.btn-solid:hover,
+.btn-solid:active
+{
+  border-color: var(--solid);
+  background: var(--solid);
+  color: var(--on-solid);
+}
+.btn-solid:hover { filter: brightness(0.92); }
+.btn-solid:active { filter: brightness(0.85); }
+
+/* ---- Croix de fermeture (panneaux) ---- */
+
+.btn-close
+{
+  box-sizing: content-box;
+  width: 1em;
+  height: 1em;
+  padding: 0.25em;
+  border: 0;
+  border-radius: 0.375rem;
+  background: transparent url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/%3e%3c/svg%3e") center / 1em auto no-repeat;
+  opacity: 0.5;
+  cursor: pointer;
+}
+.btn-close:hover { opacity: 0.75; }
+.btn-close:focus-visible { outline: 0; box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25); opacity: 1; }
