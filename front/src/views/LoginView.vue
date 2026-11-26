@@ -33,8 +33,18 @@ function signIn() {
   isSubmitting.value = false
 
   if (user.role === 'visiteur') {
+    if (router.currentRoute.value.query.redirectTo) {
+      router.push(router.currentRoute.value.query.redirectTo)
+      return
+    }
+
     if (router.currentRoute.value.query.redirect === 'commandes') {
       router.push({ name: 'client-meals' })
+      return
+    }
+
+    if (router.currentRoute.value.query.redirect === 'achat-pass') {
+      router.push({ name: 'pass-purchase' })
       return
     }
 
@@ -147,6 +157,7 @@ function signIn() {
 
 .login-page :deep(.site-header) {
   grid-column: 1 / -1;
+  padding-inline: clamp(20px, 5vw, 76px);
 }
 
 .welcome-panel {
@@ -483,6 +494,7 @@ function signIn() {
 
   .login-page :deep(.site-header) {
     order: -1;
+    padding-inline: 18px;
   }
 
   .welcome-panel {

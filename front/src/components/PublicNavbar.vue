@@ -42,6 +42,21 @@ function openMyProgramme() {
       >
         Programme
       </RouterLink>
+      <RouterLink
+        class="nav-link"
+        :class="{ active: props.activePage === 'Acheter un pass' }"
+        :to="{ name: 'pass-purchase' }"
+      >
+        Acheter un pass
+      </RouterLink>
+      <RouterLink
+        v-if="isClient"
+        class="nav-link"
+        :class="{ active: props.activePage === 'Mes réservations' }"
+        :to="{ name: 'my-reservations' }"
+      >
+        Mes réservations
+      </RouterLink>
       <button
         class="nav-link"
         :class="{ active: props.activePage === 'Mon programme' }"
