@@ -107,6 +107,14 @@
     { "Id_Billet": 3, "Date_billet": "2026-07-12", "Id_Type_Utilisateur": 3 }
   ],
 
+  "passFestival": [
+    { "id": "pass-1-jour", "name": "Pass 1 jour", "days": 1, "price": 79, "description": "Un jour de festival, à choisir parmi les trois dates." },
+    { "id": "pass-2-jours", "name": "Pass 2 jours", "days": 2, "price": 139, "description": "Deux jours de festival, à choisir parmi les trois dates." },
+    { "id": "pass-3-jours", "name": "Pass 3 jours", "days": 3, "price": 189, "description": "L'intégralité du festival, du 10 au 12 juillet." }
+  ],
+
+  "achatsPass": [],
+
   "oeuvres": [
     { "Id_oeuvre": 1, "libelle_oeuvre": "Néon Mélancolie", "auteur_oeuvre": "Léa Fontaine", "Id_Emplacement": 3 },
     { "Id_oeuvre": 2, "libelle_oeuvre": "Fresque des Quatre Vents", "auteur_oeuvre": "Atelier Soudure Vive", "Id_Emplacement": 3 },
