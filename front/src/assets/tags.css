@@ -1,0 +1,33 @@
+/* Étiquettes : une information, pas une action (le type d'un bâtiment, le statut d'une demande, « Organisation »).
+   Elles ont la forme d'un petit bouton (même contour, mêmes coins, même taille) mais restent à plat :
+   fond teinté, pas de survol, curseur normal. Avec leur couleur, on les distingue d'un bouton cliquable
+   (fond blanc, contour gris foncé, réaction au survol).
+
+   Usage :  class="tag"                              (gris)
+            class="tag tag-sm"                       (petite)
+            class="tag" style="--tag: #198754"       (autre couleur : on ne change que --tag) */
+
+.tag
+{
+  --tag: #6c757d;
+
+  display: inline-block;
+  padding: 0.2rem 0.5rem;
+  border: 1px solid color-mix(in srgb, var(--tag) 55%, white);
+  border-radius: 0.25rem;
+  background: color-mix(in srgb, var(--tag) 14%, white);
+  color: color-mix(in srgb, var(--tag) 55%, black);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  line-height: 1.4;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: default;
+}
+
+/* Petite étiquette, pour les listes serrées (plats, discussions) */
+.tag-sm
+{
+  padding: 0.05rem 0.4rem;
+  font-size: 0.75rem;
+}

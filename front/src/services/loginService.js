@@ -22,6 +22,13 @@ export function authenticate(login, password) {
 
   if (!role) return null
 
+  const providerLink = database.prestatairesUtilisateurs?.find(
+    (link) => link.Id_Utilisateur === user.Id_Utilisateur,
+  )
+  const provider = providerLink
+    ? database.Prestataire.find((item) => item.Id_Prestataire === providerLink.Id_Prestataire)
+    : null
+
   return {
     token: crypto.randomUUID(),
     utilisateur: {
@@ -29,7 +36,7 @@ export function authenticate(login, password) {
       login: user.Login_Utilisateur,
       email: user.Email_Utilisateur,
       role,
-      prestataire: null,
+      prestataire: provider ? { id: provider.Id_Prestataire, nom: provider.Nom_Prestataire } : null,
     },
   }
 }

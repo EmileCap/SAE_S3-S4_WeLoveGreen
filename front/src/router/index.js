@@ -14,9 +14,102 @@ import { isRestaurantProvider } from '../services/mealOrderService'
 import { getPassPurchase } from '../services/passService'
 import { getSession } from '../services/sessionService'
 
-const router = createRouter({
+const festivalRoutes = [
+  {
+    path: '/carte',
+    name: 'carte',
+    component: () => import('../views/public/MapView.vue'),
+    meta: { title: 'Carte', roles: ['visiteur', 'client', 'prestataire', 'gestionnaire'], order: 1, festival: true },
+  },
+  {
+    path: '/carte/programmation/:id',
+    name: 'programme-scene',
+    component: () => import('../views/public/SceneProgrammeView.vue'),
+    props: true,
+    meta: { title: 'Programme de la scène', roles: ['visiteur', 'client', 'prestataire', 'gestionnaire'], parent: 'carte', festival: true },
+  },
+  {
+    path: '/festival/ma-programmation',
+    name: 'ma-programmation',
+    component: () => import('../views/prestataire/MaProgrammationView.vue'),
+    meta: { title: 'Ma programmation', roles: ['prestataire'], order: 4, festival: true },
+  },
+  {
+    path: '/festival/ma-programmation/:id',
+    name: 'modifier-batiment',
+    component: () => import('../views/prestataire/BuildingEditView.vue'),
+    props: true,
+    meta: { title: 'Modifier mon bâtiment', roles: ['prestataire'], parent: 'ma-programmation', festival: true },
+  },
+  {
+    path: '/festival/organisateur/programmation',
+    name: 'administration',
+    component: () => import('../views/admin/AdministrationView.vue'),
+    meta: { title: 'Programmation', roles: ['gestionnaire'], order: 3, festival: true },
+  },
+  {
+    path: '/festival/organisateur/programmation/:id',
+    name: 'examiner-demande',
+    component: () => import('../views/admin/RequestReviewView.vue'),
+    props: true,
+    meta: { title: 'Examiner une demande', roles: ['gestionnaire'], parent: 'administration', festival: true },
+  },
+  {
+    path: '/festival/contact',
+    name: 'contact',
+    component: () => import('../views/shared/ContactView.vue'),
+    meta: { title: 'Contact festival', roles: ['prestataire', 'gestionnaire'], order: 5, festival: true },
+  },
+  {
+    path: '/festival/plan/programmation',
+    name: 'festival-public-programmation',
+    component: () => import('../views/public/PlaceholderView.vue'),
+    meta: { title: 'Programmation', roles: ['visiteur', 'client'], order: 2, festival: true },
+  },
+  {
+    path: '/festival/programmation/:id',
+    name: 'festival-programme-scene',
+    component: () => import('../views/public/SceneProgrammeView.vue'),
+    props: true,
+    meta: { title: 'Programme de la scène', roles: ['visiteur', 'client', 'prestataire', 'gestionnaire'], parent: 'festival-public-programmation', festival: true },
+  },
+  {
+    path: '/festival/mon-programme',
+    name: 'mon-programme',
+    component: () => import('../views/client/MonProgrammeView.vue'),
+    meta: { title: 'Mon programme du festival', roles: ['client'], order: 4, festival: true },
+  },
+  {
+    path: '/festival/placeholders/billetterie',
+    name: 'billetterie',
+    component: () => import('../views/public/PlaceholderView.vue'),
+    meta: { title: 'Billetterie', roles: ['visiteur', 'gestionnaire'], order: 4, festival: true },
+  },
+  {
+    path: '/festival/placeholders/mon-billet',
+    name: 'mon-billet',
+    component: () => import('../views/public/PlaceholderView.vue'),
+    meta: { title: 'Mon billet', roles: ['client'], order: 5, festival: true },
+  },
+  {
+    path: '/festival/carte/:pathMatch(.*)*',
+    redirect: { name: 'carte' },
+  },
+  {
+    path: '/carte/:pathMatch(.*)*',
+    redirect: { name: 'carte' },
+  },
+  {
+    path: '/programme-scene/:id',
+    redirect: (to) => ({ name: 'programme-scene', params: to.params }),
+  },
+]
+
+
+export const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
+    ...festivalRoutes,
     {
       path: '/',
       name: 'home',
@@ -36,10 +129,12 @@ const router = createRouter({
       path: '/client/programme',
       name: 'client-dashboard',
       component: ClientDashboardView,
-      beforeEnter: () =>
-        getSession()?.role === 'visiteur'
+      beforeEnter: () => {
+        const role = getSession()?.role
+        return role === 'visiteur' || role === 'client'
           ? true
-          : { name: 'login', query: { redirect: 'mon-programme' } },
+          : { name: 'login', query: { redirect: 'mon-programme' } }
+      },
     },
     {
       path: '/pass',
@@ -47,7 +142,7 @@ const router = createRouter({
       component: PassPurchaseView,
       beforeEnter: (to) => {
         const session = getSession()
-        if (session?.role === 'visiteur') return true
+        if (session?.role === 'visiteur' || session?.role === 'client') return true
         return { name: 'login', query: { redirect: 'achat-pass', redirectTo: to.fullPath } }
       },
     },
@@ -55,7 +150,10 @@ const router = createRouter({
       path: '/achat/paiement',
       name: 'pass-payment',
       component: PassPaymentView,
-      beforeEnter: () => (getSession()?.role === 'visiteur' ? true : { name: 'login' }),
+      beforeEnter: () => {
+        const role = getSession()?.role
+        return role === 'visiteur' || role === 'client' ? true : { name: 'login' }
+      },
     },
     {
       path: '/achat/confirmation/:id',
@@ -70,7 +168,10 @@ const router = createRouter({
       path: '/mes-reservations',
       name: 'my-reservations',
       component: MyReservationsView,
-      beforeEnter: () => (getSession()?.role === 'visiteur' ? true : { name: 'login' }),
+      beforeEnter: () => {
+        const role = getSession()?.role
+        return role === 'visiteur' || role === 'client' ? true : { name: 'login' }
+      },
     },
     {
       path: '/client/commandes',
@@ -96,6 +197,15 @@ const router = createRouter({
       beforeEnter: () => (getSession() ? true : { name: 'login' }),
     },
   ],
+})
+
+router.beforeEach((to) => {
+  const sessionRole = getSession()?.role
+  const role = sessionRole === 'organisateur' ? 'gestionnaire' : sessionRole === 'visiteur' ? 'client' : sessionRole ?? 'visiteur'
+  if (to.meta.roles && !to.meta.roles.includes(role)) {
+    return !sessionRole ? { name: 'login' } : { name: 'dashboard' }
+  }
+  return true
 })
 
 export default router

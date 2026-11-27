@@ -81,6 +81,9 @@ function signOut() {
       <RouterLink v-if="activePage === 'Commandes'" class="orders-link" :to="{ name: 'provider-meals' }">
         Ouvrir la file des commandes <span aria-hidden="true">↗</span>
       </RouterLink>
+      <RouterLink v-if="user?.role === 'prestataire'" class="orders-link" :to="{ name: 'carte' }">
+        Voir la carte du festival <span aria-hidden="true">↗</span>
+      </RouterLink>
     </section>
   </main>
 </template>

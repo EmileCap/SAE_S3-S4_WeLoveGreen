@@ -1,11 +1,30 @@
 <script setup>
+import { computed, watch } from 'vue'
+import { useRoute } from 'vue-router'
 import AppFooter from './components/AppFooter.vue'
+import FestivalNavBar from './components/layout/NavBar.vue'
+import InfoDialog from './components/map/InfoDialog.vue'
+import { useBuildings } from './composables/useBuildings.js'
+
+const route = useRoute()
+const isFestivalRoute = computed(() => route.meta.festival === true)
+const { loadBuildings } = useBuildings()
+watch(isFestivalRoute, (active) => {
+  if (active) loadBuildings()
+}, { immediate: true })
 </script>
 
 <template>
   <div class="app-layout">
-    <RouterView />
-    <AppFooter />
+    <template v-if="isFestivalRoute">
+      <FestivalNavBar />
+      <RouterView />
+      <InfoDialog />
+    </template>
+    <template v-else>
+      <RouterView />
+      <AppFooter />
+    </template>
   </div>
 </template>
 

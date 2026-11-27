@@ -42,6 +42,7 @@ function openMyProgramme() {
       >
         Programme
       </RouterLink>
+      <RouterLink class="nav-link" :to="{ name: 'carte' }">Carte du festival</RouterLink>
       <RouterLink
         class="nav-link"
         :class="{ active: props.activePage === 'Acheter un pass' }"

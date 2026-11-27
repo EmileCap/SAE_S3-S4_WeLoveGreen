@@ -52,6 +52,16 @@ function signIn() {
     return
   }
 
+  if (user.role === 'organisateur') {
+    router.push({ name: 'administration' })
+    return
+  }
+
+  if (user.role === 'prestataire') {
+    router.push({ name: 'ma-programmation' })
+    return
+  }
+
   router.push({ name: 'dashboard' })
 }
 </script>

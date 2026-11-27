@@ -34,6 +34,9 @@ function signOut() {
         <RouterLink class="meals-link" :to="{ name: 'client-meals' }">
           Réserver un plat et suivre ma file <span aria-hidden="true">↗</span>
         </RouterLink>
+        <RouterLink class="map-link" :to="{ name: 'carte' }">
+          Explorer la carte du festival <span aria-hidden="true">↗</span>
+        </RouterLink>
       </div>
     </section>
   </main>
@@ -132,7 +135,8 @@ function signOut() {
   text-decoration: none;
 }
 
-.saved-programme .meals-link {
+.saved-programme .meals-link,
+.saved-programme .map-link {
   border-top: 0;
   padding-top: 0;
 }
