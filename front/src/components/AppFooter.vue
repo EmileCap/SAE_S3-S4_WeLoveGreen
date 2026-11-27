@@ -1,5 +1,11 @@
+<script setup>
+import { useAuth } from '@/composables/useAuth.js'
+
+const { role } = useAuth()
+</script>
+
 <template>
-  <footer class="site-footer">
+  <footer class="site-footer" :class="{ 'site-footer-prestataire': role === 'prestataire' }">
     <div class="footer-main">
       <div class="footer-brand">
         <span class="brand">WE LOVE GREEN</span>
@@ -39,12 +45,17 @@
 
 <style scoped>
 .site-footer {
+  --accent: #c0fe04;
   border-top: 1px solid #333;
   padding: 30px clamp(20px, 5vw, 76px) 18px;
   color: #999;
   background: #000;
   font-family: 'PP Fraktion Mono', 'Courier New', monospace;
   font-size: 11px;
+}
+
+.site-footer-prestataire {
+  --accent: #60e2c2;
 }
 
 .footer-main {
@@ -59,7 +70,7 @@
 }
 
 .brand {
-  color: #c0fe04;
+  color: var(--accent);
   font-size: 12px;
   letter-spacing: 0.08em;
 }
@@ -92,7 +103,7 @@
 
 .footer-section a:hover,
 .footer-section a:focus-visible {
-  color: #c0fe04;
+  color: var(--accent);
 }
 
 .footer-bottom {

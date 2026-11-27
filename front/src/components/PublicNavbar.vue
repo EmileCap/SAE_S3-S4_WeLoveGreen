@@ -12,7 +12,7 @@ const props = defineProps({
 
 const router = useRouter()
 const user = getSession()
-const isClient = computed(() => user?.role === 'visiteur')
+const isClient = computed(() => user?.role === 'visiteur' || user?.role === 'client')
 
 function openMyProgramme() {
   if (isClient.value) {
@@ -59,6 +59,7 @@ function openMyProgramme() {
         Mes réservations
       </RouterLink>
       <button
+        v-if="isClient"
         class="nav-link"
         :class="{ active: props.activePage === 'Mon programme' }"
         type="button"

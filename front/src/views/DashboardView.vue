@@ -1,7 +1,7 @@
 <script setup>
 import { computed, ref } from 'vue'
 import { useRouter } from 'vue-router'
-import PublicNavbar from '../components/PublicNavbar.vue'
+import AccountNavbar from '../components/layout/AccountNavbar.vue'
 import { isRestaurantProvider } from '../services/mealOrderService'
 import { clearSession, getSession } from '../services/sessionService'
 
@@ -30,17 +30,22 @@ const navItems = computed(() => {
     return [
       ...(hasRestaurantActivity.value ? [{ label: 'Commandes', to: { name: 'provider-meals' } }] : []),
       { label: 'Ma programmation' },
+      { label: 'Carte du festival', to: { name: 'carte' } },
       { label: 'Statistiques' },
     ]
   }
 
   if (user?.role === 'organisateur') {
-    return [{ label: 'Programmation' }, { label: 'Carte' }, { label: 'Statistiques' }]
+    return [
+      { label: 'Programmation' },
+      { label: 'Carte du festival', to: { name: 'carte' } },
+      { label: 'Statistiques' },
+    ]
   }
 
   return []
 })
-const activePage = ref(navItems.value[0]?.label ?? '')
+const activePage = ref(navItems.value.find((item) => item.label === router.currentRoute.value.query.section)?.label ?? navItems.value.find((item) => !item.to)?.label ?? navItems.value[0]?.label ?? '')
 const pageMessage = computed(() =>
   activePage.value === 'Commandes' ? 'Suivez vos commandes' : `${activePage.value} - ${roleLabel.value} FONCTIONNE`,
 )
@@ -53,35 +58,12 @@ function signOut() {
 
 <template>
   <main class="dashboard" :class="`dashboard-${user?.role ?? 'unknown'}`">
-    <header class="navbar">
-      <RouterLink class="wordmark" to="/" aria-label="We Love Green - accueil">
-        <span class="logo-mark">W</span>
-        <span>WE LOVE GREEN</span>
-      </RouterLink>
-
-      <nav class="navigation" :aria-label="`Navigation ${roleLabel}`">
-        <button
-          v-for="item in navItems"
-          :key="item.label"
-          class="nav-link"
-          :class="{ active: activePage === item.label }"
-          type="button"
-          @click="item.to ? router.push(item.to) : (activePage = item.label)"
-        >
-          {{ item.label }}
-        </button>
-      </nav>
-
-      <button class="logout-button" type="button" @click="signOut">Déconnexion <span>↗</span></button>
-    </header>
+    <AccountNavbar :items="navItems" :active-page="activePage" :role-label="roleLabel" @select="activePage = $event" />
 
     <section class="content" aria-live="polite">
       <p class="eyebrow">ESPACE PERSONNEL · {{ roleLabel }}</p>
       <h1>{{ pageMessage }}</h1>
-      <RouterLink v-if="activePage === 'Commandes'" class="orders-link" :to="{ name: 'provider-meals' }">
-        Ouvrir la file des commandes <span aria-hidden="true">↗</span>
-      </RouterLink>
-      <RouterLink v-if="user?.role === 'prestataire'" class="orders-link" :to="{ name: 'carte' }">
+      <RouterLink v-if="user?.role === 'prestataire' && activePage !== 'Carte du festival'" class="orders-link" :to="{ name: 'carte' }">
         Voir la carte du festival <span aria-hidden="true">↗</span>
       </RouterLink>
     </section>

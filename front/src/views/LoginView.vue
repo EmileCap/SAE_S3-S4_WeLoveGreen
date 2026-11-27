@@ -53,12 +53,12 @@ function signIn() {
   }
 
   if (user.role === 'organisateur') {
-    router.push({ name: 'administration' })
+    router.push({ name: 'dashboard', query: { section: 'Programmation' } })
     return
   }
 
   if (user.role === 'prestataire') {
-    router.push({ name: 'ma-programmation' })
+    router.push({ name: 'dashboard', query: { section: 'Ma programmation' } })
     return
   }
 

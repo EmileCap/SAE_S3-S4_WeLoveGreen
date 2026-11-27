@@ -1,7 +1,6 @@
 <script setup>
 import { computed, onMounted, onUnmounted, ref } from 'vue'
-import { useRouter } from 'vue-router'
-import PublicNavbar from '../components/PublicNavbar.vue'
+import AccountNavbar from '../components/layout/AccountNavbar.vue'
 import {
   advanceMealOrder,
   getMealOrderStatusLabel,
@@ -9,14 +8,19 @@ import {
   isRestaurantProvider,
   validateMealOrderCollection,
 } from '../services/mealOrderService'
-import { clearSession, getSession } from '../services/sessionService'
+import { getSession } from '../services/sessionService'
 
-const router = useRouter()
 const user = getSession()
 const orders = ref([])
 const errorMessage = ref('')
 const refreshInterval = ref(null)
 const hasRestaurantActivity = computed(() => isRestaurantProvider(user))
+const navItems = [
+  { label: 'Commandes', to: { name: 'provider-meals' } },
+  { label: 'Ma programmation', to: { name: 'ma-programmation' } },
+  { label: 'Carte du festival', to: { name: 'carte' } },
+  { label: 'Statistiques' },
+]
 
 function refreshOrders() {
   orders.value = getProviderMealOrders(user)
@@ -42,11 +46,6 @@ function validateCollection(order) {
   }
 }
 
-function signOut() {
-  clearSession()
-  router.push({ name: 'login' })
-}
-
 onMounted(() => {
   refreshOrders()
   refreshInterval.value = window.setInterval(refreshOrders, 1000)
@@ -61,14 +60,13 @@ onUnmounted(() => {
 
 <template>
   <main class="orders-page">
-    <PublicNavbar />
+    <AccountNavbar :items="navItems" active-page="Commandes" role-label="Prestataire" />
     <header class="orders-header">
       <div>
         <p class="eyebrow">ESPACE PRESTATAIRE · RESTAURATION</p>
         <h1>Commandes<span>.</span></h1>
         <p class="intro">Suivez votre file et faites avancer chaque commande quand elle est prête.</p>
       </div>
-      <button class="logout-button" type="button" @click="signOut">Déconnexion ↗</button>
     </header>
 
     <section class="queue-summary" aria-live="polite">
@@ -344,10 +342,6 @@ h1 span {
     align-items: flex-start;
     flex-direction: column;
     padding-top: 44px;
-  }
-
-  .logout-button {
-    align-self: flex-end;
   }
 
   .order-card {

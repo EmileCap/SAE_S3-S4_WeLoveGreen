@@ -14,6 +14,11 @@ const { stopPlacing } = usePlacement()
 const { pendingCount, toCorrectCount } = useBuildings()
 const { unreadCount } = useDiscussions()
 const menuOpen = ref(false)
+const brandDestination = computed(() => {
+  if (role.value === 'prestataire') return { name: 'dashboard', query: { section: 'Ma programmation' } }
+  if (role.value === 'gestionnaire') return { name: 'dashboard', query: { section: 'Programmation' } }
+  return { name: 'home' }
+})
 
 // Les entrées de la navbar viennent des routes (src/router/index.js) :
 // on garde celles que le rôle actuel a le droit de voir, dans l'ordre de meta.order.
@@ -68,8 +73,8 @@ function disconnect() {
 </script>
 
 <template>
-  <nav class="navbar">
-    <RouterLink class="brand" :to="{ name: 'home' }">We Love Green</RouterLink>
+  <nav class="navbar" :class="{ 'navbar-prestataire': role === 'prestataire' }">
+    <RouterLink class="brand" :to="brandDestination">We Love Green</RouterLink>
 
     <ul>
       <li v-for="item in visibleItems" :key="item.path">
@@ -118,7 +123,9 @@ function disconnect() {
   color: #fff;
   font-family: system-ui, sans-serif;
 }
+.navbar-prestataire { --accent: #60e2c2; }
 .brand { color: inherit; font-size: 16px; text-decoration: none; }
+.navbar-prestataire .brand { color: var(--accent); }
 ul { display: flex; gap: 16px; margin: 0; padding: 0; list-style: none; flex: 1; }
 .link {
   padding: 4px 0;
@@ -130,6 +137,7 @@ ul { display: flex; gap: 16px; margin: 0; padding: 0; list-style: none; flex: 1;
 .link:hover { opacity: 1; }
 .badge { display: inline-block; min-width: 18px; margin-left: 4px; padding: 0 5px; border-radius: 9px; background: #dc3545; color: #fff; font-size: 11px; font-weight: 700; line-height: 18px; text-align: center; }
 .link.active { opacity: 1; border-bottom-color: #fff; }
+.navbar-prestataire .link.active { border-bottom-color: var(--accent); }
 
 .account { position: relative; }
 .menu {
@@ -146,4 +154,5 @@ ul { display: flex; gap: 16px; margin: 0; padding: 0; list-style: none; flex: 1;
 .menu-title { margin: 0 0 8px; font-size: 12px; color: #666; }
 .menu .btn { display: block; width: 100%; margin-bottom: 4px; text-align: left; }
 .menu .logout { margin-top: 8px; }
+.navbar-prestataire .logout { border-color: var(--accent); color: var(--accent); }
 </style>
