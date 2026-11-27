@@ -78,6 +78,20 @@
     },
     {
       "Id_Type_Utilisateur": 2,
+      "Id_Utilisateur": 16,
+      "Login_Utilisateur": "jardinroulant",
+      "Passwoard_Utilisateur": "jardinroulant",
+      "Email_Utilisateur": "jardinroulant@example.com"
+    },
+    {
+      "Id_Type_Utilisateur": 2,
+      "Id_Utilisateur": 17,
+      "Login_Utilisateur": "pizzaverte",
+      "Passwoard_Utilisateur": "pizzaverte",
+      "Email_Utilisateur": "pizzaverte@example.com"
+    },
+    {
+      "Id_Type_Utilisateur": 2,
       "Id_Utilisateur": 11,
       "Login_Utilisateur": "prestataire3",
       "Passwoard_Utilisateur": "prestataire",
@@ -119,14 +133,18 @@
     { "Id_Prestataire": 1, "Nom_Prestataire": "karen", "Id_type_prestataire": 1 },
     { "Id_Prestataire": 2, "Nom_Prestataire": "Tibo huinshape", "Id_type_prestataire": 4 },
     { "Id_Prestataire": 3, "Nom_Prestataire": "CrocHouse", "Id_type_prestataire": 2 },
-    { "Id_Prestataire": 4, "Nom_Prestataire": "Crous Belfort", "Id_type_prestataire": 2 }
+    { "Id_Prestataire": 4, "Nom_Prestataire": "Crous Belfort", "Id_type_prestataire": 2 },
+    { "Id_Prestataire": 5, "Nom_Prestataire": "Le Jardin Roulant", "Id_type_prestataire": 2 },
+    { "Id_Prestataire": 6, "Nom_Prestataire": "Pizza Verde", "Id_type_prestataire": 2 }
   ],
 
   "prestatairesTypesUtilisateurs": [
     { "Id_Prestataire": 1, "Id_Type_Utilisateur": 2 },
     { "Id_Prestataire": 2, "Id_Type_Utilisateur": 2 },
     { "Id_Prestataire": 3, "Id_Type_Utilisateur": 2 },
-    { "Id_Prestataire": 4, "Id_Type_Utilisateur": 2 }
+    { "Id_Prestataire": 4, "Id_Type_Utilisateur": 2 },
+    { "Id_Prestataire": 5, "Id_Type_Utilisateur": 2 },
+    { "Id_Prestataire": 6, "Id_Type_Utilisateur": 2 }
   ],
 
   "prestatairesUtilisateurs": [
@@ -135,20 +153,47 @@
     { "Id_Utilisateur": 5, "Id_Prestataire": 3 },
     { "Id_Utilisateur": 10, "Id_Prestataire": 1 },
     { "Id_Utilisateur": 11, "Id_Prestataire": 2 },
-    { "Id_Utilisateur": 15, "Id_Prestataire": 4 }
+    { "Id_Utilisateur": 15, "Id_Prestataire": 4 },
+    { "Id_Utilisateur": 16, "Id_Prestataire": 5 },
+    { "Id_Utilisateur": 17, "Id_Prestataire": 6 }
   ],
 
   "plats": [
-    { "id": 1, "prestataireId": 3, "categorie": "Plats", "nom": "Burger végétal", "description": "Galette de légumes, salade et sauce maison", "prix": 12.5, "disponible": true },
-    { "id": 2, "prestataireId": 3, "categorie": "Plats", "nom": "Assiette du marché", "description": "Légumes de saison et céréales locales", "prix": 10, "disponible": true },
-    { "id": 3, "prestataireId": 3, "categorie": "Desserts", "nom": "Tarte aux pommes", "description": "Pommes locales, pâte pur beurre", "prix": 5.5, "disponible": true },
-    { "id": 4, "prestataireId": 3, "categorie": "Plats", "nom": "Wrap croquant", "description": "Légumes frais, houmous et galette aux céréales", "prix": 9.5, "disponible": true },
-    { "id": 5, "prestataireId": 3, "categorie": "Boissons", "nom": "Citronnade maison", "description": "Citron pressé et menthe fraîche", "prix": 3.5, "disponible": true },
-    { "id": 6, "prestataireId": 4, "categorie": "Plats du jour", "nom": "Menu étudiant", "description": "Plat du jour, accompagnement et fruit", "prix": 3.3, "disponible": true },
-    { "id": 7, "prestataireId": 4, "categorie": "Plats végétariens", "nom": "Bowl végétarien", "description": "Riz, légumes de saison et sauce au yaourt", "prix": 3.3, "disponible": true },
-    { "id": 8, "prestataireId": 4, "categorie": "Plats", "nom": "Pâtes à la sauce tomate", "description": "Pâtes et sauce tomate cuisinée", "prix": 2.8, "disponible": true },
-    { "id": 9, "prestataireId": 4, "categorie": "Desserts", "nom": "Yaourt fermier", "description": "Yaourt nature issu de producteurs locaux", "prix": 1.2, "disponible": true },
-    { "id": 10, "prestataireId": 4, "categorie": "Boissons", "nom": "Eau pétillante", "description": "Bouteille d’eau pétillante", "prix": 1, "disponible": true }
+    { "id": 1, "prestataireId": 3, "categorie": "Plats", "nom": "Croc jambon végétal", "description": "Pain de mie, jambon végétal, fromage, béchamel et salade", "prix": 6.5, "disponible": true },
+    { "id": 2, "prestataireId": 3, "categorie": "Plats", "nom": "Croc poisson durable", "description": "Pain de mie, filet de poisson issu d’une pêche durable, fromage et citron", "prix": 7.5, "disponible": true },
+    { "id": 3, "prestataireId": 3, "categorie": "Plats", "nom": "Croc chèvre-épinards", "description": "Chèvre, épinards et oignons confits dans du pain doré", "prix": 6.5, "disponible": true },
+    { "id": 4, "prestataireId": 3, "categorie": "Accompagnements", "nom": "Frites végétales", "description": "Pommes de terre locales cuites à l’huile végétale", "prix": 3, "disponible": true },
+    { "id": 5, "prestataireId": 3, "categorie": "Accompagnements", "nom": "Frites patate douce", "description": "Bâtonnets de patate douce rôtis, sauce maison végétale", "prix": 4, "disponible": true },
+    { "id": 6, "prestataireId": 3, "categorie": "Desserts", "nom": "Cookie tout choco", "description": "Cookie au chocolat noir, recette sans viande", "prix": 2.5, "disponible": true },
+    { "id": 7, "prestataireId": 3, "categorie": "Desserts", "nom": "Compote pomme-poire", "description": "Fruits de saison sans sucres ajoutés", "prix": 1.8, "disponible": true },
+    { "id": 8, "prestataireId": 3, "categorie": "Boissons", "nom": "Citronnade maison", "description": "Citron pressé et menthe fraîche", "prix": 3, "disponible": true },
+    { "id": 9, "prestataireId": 3, "categorie": "Boissons", "nom": "Thé glacé maison", "description": "Thé noir infusé à froid, citron et sirop léger", "prix": 3, "disponible": true },
+    { "id": 10, "prestataireId": 3, "categorie": "Boissons", "nom": "Eau plate locale", "description": "Eau en bouteille consignée", "prix": 1.5, "disponible": true },
+    { "id": 11, "prestataireId": 4, "categorie": "Entrées", "nom": "Carottes râpées", "description": "Carottes fraîches, vinaigrette légère", "prix": 1.2, "disponible": true },
+    { "id": 12, "prestataireId": 4, "categorie": "Plats", "nom": "Bowl lentilles et légumes", "description": "Lentilles, riz complet, légumes de saison et sauce au yaourt", "prix": 3.8, "disponible": true },
+    { "id": 13, "prestataireId": 4, "categorie": "Plats", "nom": "Pâtes complètes tomate et pois chiches", "description": "Pâtes complètes, sauce tomate et pois chiches pour un repas équilibré", "prix": 3.2, "disponible": true },
+    { "id": 14, "prestataireId": 4, "categorie": "Plats", "nom": "Omelette aux pommes de terre", "description": "Œufs plein air, pommes de terre et salade verte", "prix": 3.5, "disponible": true },
+    { "id": 15, "prestataireId": 4, "categorie": "Plats", "nom": "Menu étudiant végétarien", "description": "Plat végétarien du jour, légumes ou féculent et fruit", "prix": 4.5, "disponible": true },
+    { "id": 16, "prestataireId": 4, "categorie": "Desserts", "nom": "Fromage blanc et fruits", "description": "Fromage blanc nature avec fruits de saison", "prix": 1.5, "disponible": true },
+    { "id": 17, "prestataireId": 4, "categorie": "Desserts", "nom": "Pomme locale", "description": "Fruit frais issu d’un verger régional", "prix": 0.8, "disponible": true },
+    { "id": 18, "prestataireId": 4, "categorie": "Boissons", "nom": "Eau plate", "description": "Eau en bouteille consignée", "prix": 1, "disponible": true },
+    { "id": 19, "prestataireId": 4, "categorie": "Boissons", "nom": "Jus de pomme local", "description": "Pur jus de pommes de la région", "prix": 1.8, "disponible": true },
+    { "id": 20, "prestataireId": 5, "categorie": "Entrées", "nom": "Houmous et crudités", "description": "Houmous de pois chiches et bâtonnets de légumes de saison", "prix": 3, "disponible": true },
+    { "id": 21, "prestataireId": 5, "categorie": "Plats", "nom": "Bowl du jardin", "description": "Quinoa, légumes rôtis, pois chiches et herbes fraîches", "prix": 8.5, "disponible": true },
+    { "id": 22, "prestataireId": 5, "categorie": "Plats", "nom": "Galette sarrasin champignons", "description": "Galette au sarrasin, champignons locaux et fondue d’oignons", "prix": 7.5, "disponible": true },
+    { "id": 23, "prestataireId": 5, "categorie": "Plats", "nom": "Chili sin carne", "description": "Haricots rouges, maïs et riz, recette végétale", "prix": 7, "disponible": true },
+    { "id": 24, "prestataireId": 5, "categorie": "Desserts", "nom": "Gâteau carotte-noisette", "description": "Gâteau maison aux carottes et noisettes", "prix": 3.5, "disponible": true },
+    { "id": 25, "prestataireId": 5, "categorie": "Desserts", "nom": "Salade de fruits", "description": "Fruits frais de saison, préparation maison", "prix": 3, "disponible": true },
+    { "id": 26, "prestataireId": 5, "categorie": "Boissons", "nom": "Kéfir fruité", "description": "Boisson fermentée artisanale aux fruits", "prix": 3.5, "disponible": true },
+    { "id": 27, "prestataireId": 5, "categorie": "Boissons", "nom": "Eau infusée concombre-menthe", "description": "Eau fraîche aromatisée sans sucre", "prix": 1.5, "disponible": true },
+    { "id": 28, "prestataireId": 6, "categorie": "Entrées", "nom": "Salade caprese", "description": "Tomates, mozzarella et basilic frais", "prix": 4, "disponible": true },
+    { "id": 29, "prestataireId": 6, "categorie": "Plats", "nom": "Pizza margherita", "description": "Sauce tomate, mozzarella et basilic sur pâte maison", "prix": 7.5, "disponible": true },
+    { "id": 30, "prestataireId": 6, "categorie": "Plats", "nom": "Pizza légumes du soleil", "description": "Courgettes, poivrons, oignons et fromage", "prix": 9.5, "disponible": true },
+    { "id": 31, "prestataireId": 6, "categorie": "Plats", "nom": "Pizza champignons-épinards", "description": "Champignons, épinards, crème et mozzarella", "prix": 9, "disponible": true },
+    { "id": 32, "prestataireId": 6, "categorie": "Desserts", "nom": "Tiramisu classique", "description": "Mascarpone, café et cacao", "prix": 4, "disponible": true },
+    { "id": 33, "prestataireId": 6, "categorie": "Desserts", "nom": "Panna cotta coulis de fruits", "description": "Crème vanillée et coulis de fruits rouges", "prix": 3.5, "disponible": true },
+    { "id": 34, "prestataireId": 6, "categorie": "Boissons", "nom": "Limonade artisanale", "description": "Limonade locale au citron", "prix": 3, "disponible": true },
+    { "id": 35, "prestataireId": 6, "categorie": "Boissons", "nom": "Eau pétillante", "description": "Eau pétillante en bouteille consignée", "prix": 1.5, "disponible": true }
   ],
 
   "Emplacement": [
